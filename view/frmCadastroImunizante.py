@@ -75,35 +75,38 @@ def criaTela():
     tela.geometry("800x300")
     tela.resizable(width=False, height=False)
 
-    lblForm =  Label(tela,border=2, relief="solid", width=54, height = 10)
-    lblForm.place(x=190, y=90)
+    lblForm =  Label(tela,border=2, relief="solid", width=54, height = 13)
+    lblForm.place(x=190, y=70)
 
     lblTitulo = Label(tela, text="Cadastro de Imunizante",font="Arial 20")
     lblTitulo.place(x=250, y=10)  
 
     lblLote = Label(tela, text="Lote: ",font="Arial 12")
-    lblLote.place(x=200, y=100)
+    lblLote.place(x=200, y=78)
     txtLote = Entry(tela, width=33, border=1, relief="solid",font="Arial 12")
-    txtLote.place(x=260, y=100)
+    txtLote.place(x=260, y=78)
 
     lblEstado = Label(tela, text="Estado: ",font="Arial 12")
-    lblEstado.place(x=200, y=150)
+    lblEstado.place(x=200, y=120)
     cbEstado = Combobox(tela, values=formataEstado(), width=31,font="Arial 12",state="readonly")
-    cbEstado.place(x=260, y=150)
+    cbEstado.place(x=260, y=120)
 
     lblEmpresa = Label(tela, text="Empresa: ",font="Arial 12")
-    lblEmpresa.place(x=200, y=200)
+    lblEmpresa.place(x=200, y=162)
     cbEmpresa = Combobox(tela, values=formataEmpresa(), width=29,font="Arial 12",state="readonly")
-    cbEmpresa.place(x=275, y=200)
+    cbEmpresa.place(x=275, y=162)
 
     btnSalvar = Button(tela, text="Salvar", command=salvar, width=15, border=1, relief="solid")
-    btnSalvar.place(x=190, y=250)
+    btnSalvar.place(x=250, y=200)
 
     btnLimpar = Button(tela, text="Voltar", command=voltar, width=15, border=1, relief="solid")
-    btnLimpar.place(x=325, y=250)
+    btnLimpar.place(x=400, y=200)
+
+    btnLimpar = Button(tela, text="Limpar", command=limpar, width=15, border=1, relief="solid")
+    btnLimpar.place(x=250, y=235)
 
     btnSair = Button(tela, text="Sair", command=sair, width=15, border=1, relief="solid")
-    btnSair.place(x=460, y=250)
+    btnSair.place(x=400, y=235)
 
     tela.mainloop()
 

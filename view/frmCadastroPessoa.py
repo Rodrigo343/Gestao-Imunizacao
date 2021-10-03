@@ -65,43 +65,46 @@ def criaTela():
     tela.geometry("800x300")
     tela.resizable(width=False, height=False)
 
-    lblForm =  Label(tela,border=2, relief="solid", width=54, height = 12)
-    lblForm.place(x=190, y=60)
+    lblForm =  Label(tela,border=2, relief="solid", width=54, height = 16)
+    lblForm.place(x=190, y=50)
 
     lblTitulo = Label(tela, text="Cadastro de Pessoa",font="Arial 20")
     lblTitulo.place(x=250, y=10)  
 
     lblNome = Label(tela, text="Nome: ",font="Arial 12")
-    lblNome.place(x=200, y=80)
+    lblNome.place(x=200, y=70)
     txtNome = Entry(tela, width=33, border=1, relief="solid",font="Arial 12")
-    txtNome.place(x=260, y=80)
+    txtNome.place(x=260, y=70)
 
     lblCpf = Label(tela, text="Cpf: ",font="Arial 12")
-    lblCpf.place(x=200, y=120)
+    lblCpf.place(x=200, y=110)
     txtCpf = Entry(tela, width=33, border=1, relief="solid",font="Arial 12")
-    txtCpf.place(x=260, y=120)
+    txtCpf.place(x=260, y=110)
 
     lblDoses = Label(tela, text="Doses: ",font="Arial 12")
-    lblDoses.place(x=200, y=160)
+    lblDoses.place(x=200, y=150)
     txtDoses = Entry(tela, width=31, border=1, relief="solid",font="Arial 12")
-    txtDoses.place(x=280, y=160)
+    txtDoses.place(x=280, y=150)
 
     lblImunizante = Label(tela, text="Imunizante: ",font="Arial 12")
-    lblImunizante.place(x=200, y=200)
+    lblImunizante.place(x=200, y=190)
     cbImunizante = Combobox(tela, values=formataImunizante(), width=29,font="Arial 12",state="readonly")
     cbImunizante.config(state="normal")
     cbImunizante.insert(0,string="")
     cbImunizante.config(state="readonly")
-    cbImunizante.place(x=282, y=200)
+    cbImunizante.place(x=282, y=190)
 
     btnSalvar = Button(tela, text="Salvar", command=salvar, width=15, border=1, relief="solid")
-    btnSalvar.place(x=190, y=250)
+    btnSalvar.place(x=250, y=230)
 
     btnLimpar = Button(tela, text="Voltar", command=voltar, width=15, border=1, relief="solid")
-    btnLimpar.place(x=325, y=250)
+    btnLimpar.place(x=400, y=230)
+
+    btnLimpar = Button(tela, text="Limpar", command=limpar, width=15, border=1, relief="solid")
+    btnLimpar.place(x=250, y=260)
 
     btnSair = Button(tela, text="Sair", command=sair, width=15, border=1, relief="solid")
-    btnSair.place(x=460, y=250)
+    btnSair.place(x=400, y=260)
 
     tela.mainloop()
 

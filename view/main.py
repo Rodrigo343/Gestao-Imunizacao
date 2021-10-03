@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-
-global txtNome, txtCnpj, txtNomeImunizante, lblNome, lblCnpj, lblNomeImunizante, lblTitulo
+from .controller.controllerMain import *
 
 def sair():
     tela.destroy()
@@ -37,7 +36,10 @@ def abreEdicaoPessoa():
     criaEdicaoPessoa()
 
 def criaTela():
-    global tela    
+    global tela, imunizados
+    global lblNaoIminizado, lblDuasDose, lblUmaDose
+
+    imunizados = calculaImunizados()
 
     tela= Tk()
     tela.title("Cadastro Empresa")
@@ -61,6 +63,27 @@ def criaTela():
     barraMenu.add_cascade(label="Pessoa",menu= menuPessoa)
 
     barraMenu.add_command(label="Sair", command=sair)
+
+    lblTitulo = Label(tela, text= "Pessoas Imunizadas",font="Arial 20")
+    lblTitulo.place(x=270, y=40)
+
+    lblTextoNaoIminizado = Label(tela,font="Arial 12", text=("0º Doses: {0}%".format(imunizados[0])))
+    lblTextoNaoIminizado.place(x=80, y=120)
+
+    lblTextoUmaDose = Label(tela,font="Arial 12", text=("1º Doses: {0}%".format(imunizados[1])))
+    lblTextoUmaDose.place(x=80, y=160)
+
+    lblTextoDuasDose = Label(tela,font="Arial 12", text=("2º Doses: {0}%".format(imunizados[2])))
+    lblTextoDuasDose.place(x=80, y=200)
+
+    lblNaoIminizado = Label(tela,font="Arial 12",bg="#F53B5A", width=(round(imunizados[0]/2.0)))
+    lblNaoIminizado.place(x=200, y=120)
+
+    lblUmaDose = Label(tela,font="Arial 12",bg="#F5ED53", width=(round(imunizados[1]/2.0)))
+    lblUmaDose.place(x=200, y=160)
+
+    lblDuasDose = Label(tela,font="Arial 12",bg="#75F56E", width=(round(imunizados[2]/2.0)))
+    lblDuasDose.place(x=200, y=200)
 
     tela.config(menu=barraMenu)
     tela.mainloop()
