@@ -39,6 +39,8 @@ def criaTela():
     global tela, imunizados
     global lblNaoIminizado, lblDuasDose, lblUmaDose
 
+    # calculaImunizados() traz a porcentagem de pessoas vacinadas e nao vacinadas
+    # em um array de inteiros em porcentagem 
     imunizados = calculaImunizados()
 
     tela= Tk()
@@ -76,6 +78,8 @@ def criaTela():
     lblTextoDuasDose = Label(tela,font="Arial 12", text=("2º Doses: {0}%".format(imunizados[2])))
     lblTextoDuasDose.place(x=80, y=200)
 
+    #conta no tamanho do label com base na quantidade de pessoas com cada dose, mas divido por 2
+    # para o tamanho do label nunca exeder o tamanho da tela 
     lblNaoIminizado = Label(tela,font="Arial 12",bg="#F53B5A", width=(round(imunizados[0]/2.0)))
     lblNaoIminizado.place(x=200, y=120)
 
