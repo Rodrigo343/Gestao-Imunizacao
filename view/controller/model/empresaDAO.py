@@ -1,7 +1,7 @@
 import sqlite3
 
-from controller.conexao import Conexao
-from empresa import Empresa
+from .util.conexao import Conexao
+from .empresa import Empresa
 
 class EmpresaDAO():
     def __init__(self):
@@ -13,10 +13,10 @@ class EmpresaDAO():
         empresas = []
         try:
             self.__cur = self.__con.cursor()
-            sql = "SELECT * FROM empresa"
+            sql = "SELECT * FROM empresa;"
 
             for row in self.__cur.execute(sql):
-                empresa = Empresa(row[0],row[1],row[2],row[3])
+                empresa = Empresa(row[0],row[1],int(row[2]),row[3])
                 empresas.append(empresa)
 
             return empresas
@@ -26,7 +26,7 @@ class EmpresaDAO():
 
     def inserir(self,empresa):
         try:
-            sql = "INSERT INTO empresa VALUES(?, ?, ?, ?)" 
+            sql = "INSERT INTO empresa VALUES(?, ?, ?, ?);" 
 
             self.__cur = self.__con.cursor()
 
@@ -51,17 +51,19 @@ class EmpresaDAO():
         except Exception or sqlite3.DatabaseError:
             sqlite3.enable_callback_tracebacks()
 
-    def busca(self,id):
-
-        try:
-            sql = "SELECT * FROM empresa WHERE id = (?)"
+    def busca(self,condicao):
         
+        empresas = []
+        try:
             self.__cur = self.__con.cursor()
+            concatenar = "'%" + condicao + "%'"
+            sql = "SELECT * FROM empresa  WHERE nome LIKE" + concatenar
 
-            for row in self.__cur.execute(sql, (id,)):
-                empresa = Empresa(row[0],row[1],row[2],row[3])
+            for row in self.__cur.execute(sql):
+                empresa = Empresa(row[0],row[1],int(row[2]),row[3])
+                empresas.append(empresa)
 
-            return empresa
+            return empresas
 
         except Exception or sqlite3.DatabaseError:
             sqlite3.enable_callback_tracebacks()
@@ -69,7 +71,7 @@ class EmpresaDAO():
     def excluir(self,id):
         try:
 
-            sql = "DELETE FROM empresa WHERE id = (?)"
+            sql = "DELETE FROM empresa WHERE id = (?);"
 
             self.__cur = self.__con.cursor()
 
@@ -87,3 +89,4 @@ class EmpresaDAO():
 
         except Exception or sqlite3.DatabaseError:
             sqlite3.enable_callback_tracebacks()
+    

@@ -1,7 +1,7 @@
 import sqlite3
 
-from controller.conexao import Conexao
-from pessoa import Pessoa
+from .util.conexao import Conexao
+from .pessoa import Pessoa
 
 class PessoaDAO():
     def __init__(self):
@@ -16,7 +16,7 @@ class PessoaDAO():
             sql = "SELECT * FROM pessoa"
 
             for row in self.__cur.execute(sql):
-                pessoa = Pessoa(row[0],row[1],row[2],row[3],row[4])
+                pessoa = Pessoa(int(row[0]),row[1],int(row[2]),int(row[3]),row[4])
                 pessoas.append(pessoa)
 
             return pessoas
@@ -48,16 +48,19 @@ class PessoaDAO():
         except Exception or sqlite3.DatabaseError:
             sqlite3.enable_callback_tracebacks()
 
-    def busca(self,id):
+    def busca(self,condicao):
         try:
-            sql = "SELECT * FROM pessoa WHERE id = (?)"
+            pessoas = []
+            concatenar = "'%" + condicao + "%'"
+            sql = "SELECT * FROM pessoa  WHERE nome LIKE" + concatenar
         
             self.__cur = self.__con.cursor()
 
-            for row in self.__cur.execute(sql, (id,)):
-                pessoa = Pessoa(row[0],row[1],row[2],row[3])
+            for row in self.__cur.execute(sql):
+                pessoa = Pessoa(int(row[0]),row[1],int(row[2]),row[3],row[4])
+                pessoas.append(pessoa)
 
-            return pessoa
+            return pessoas
         except Exception or sqlite3.DatabaseError:
             sqlite3.enable_callback_tracebacks()
     

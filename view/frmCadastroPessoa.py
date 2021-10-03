@@ -1,0 +1,108 @@
+from tkinter import *
+from tkinter import messagebox
+from tkinter.ttk import Combobox
+from .controller.controllerEmpresa import *
+from .controller.controllerImunizante import *
+from .controller.controllerPessoa import *
+
+def formataImunizante():
+    global imunizantes,empresas
+    imunizantes = listaImunizantes()
+    empresas = listaEmpresas()
+    imunizantesFormatados = []
+    imunizantesFormatados.append("")
+
+    for i in imunizantes:
+        for j in empresas:
+            if i.id_empresa == j.id:
+                imunizantesFormatados.append("Lote: {0} Imunizante: {1}".format(i.lote, j.imunizante))
+    
+    return imunizantesFormatados
+
+def sair():
+    tela.destroy()
+
+def voltar():
+    sair()
+    from .main import criaTela
+    criaTela()
+
+def menssagem(menssage):
+    messagebox.showinfo("Menssagem", menssage)
+
+def limpar():
+    cbImunizante.config(state="normal")
+    txtNome.delete(0, END)
+    txtCpf.delete(0, END)
+    txtDoses.delete(0, END)
+    cbImunizante.delete(0, END)
+    cbImunizante.config(state="readonly")
+
+def pegaIdImunizante():
+    if (cbImunizante.get() != "" ):
+        for i in imunizantes:
+            comboEmpresaFomatada = cbImunizante.get().split()
+            if(i.lote == int(comboEmpresaFomatada[1])):
+                return i.id
+    else:
+        return 0
+
+def salvar():
+
+    if(adicionaPessoa(txtNome.get(),txtCpf.get(),txtDoses.get(), pegaIdImunizante())):
+        limpar()
+        menssagem("Cadastrado com sucesso")
+    else:
+        menssagem("Cadastro Invalido! Insira corretamente os campos")
+
+def criaTela():
+    global tela  
+    global txtNome, txtCpf, txtDoses, cbImunizante
+    global lblNome, lblCpf, lblDoses, lblImunizante, lblTitulo  
+
+    tela= Tk()
+    tela.title("Cadastro Pessoa")
+    tela.geometry("800x300")
+    tela.resizable(width=False, height=False)
+
+    lblForm =  Label(tela,border=2, relief="solid", width=54, height = 12)
+    lblForm.place(x=190, y=60)
+
+    lblTitulo = Label(tela, text="Cadastro de Pessoa",font="Arial 20")
+    lblTitulo.place(x=250, y=10)  
+
+    lblNome = Label(tela, text="Nome: ",font="Arial 12")
+    lblNome.place(x=200, y=80)
+    txtNome = Entry(tela, width=33, border=1, relief="solid",font="Arial 12")
+    txtNome.place(x=260, y=80)
+
+    lblCpf = Label(tela, text="Cpf: ",font="Arial 12")
+    lblCpf.place(x=200, y=120)
+    txtCpf = Entry(tela, width=33, border=1, relief="solid",font="Arial 12")
+    txtCpf.place(x=260, y=120)
+
+    lblDoses = Label(tela, text="Doses: ",font="Arial 12")
+    lblDoses.place(x=200, y=160)
+    txtDoses = Entry(tela, width=31, border=1, relief="solid",font="Arial 12")
+    txtDoses.place(x=280, y=160)
+
+    lblImunizante = Label(tela, text="Imunizante: ",font="Arial 12")
+    lblImunizante.place(x=200, y=200)
+    cbImunizante = Combobox(tela, values=formataImunizante(), width=29,font="Arial 12",state="readonly")
+    cbImunizante.config(state="normal")
+    cbImunizante.insert(0,string="")
+    cbImunizante.config(state="readonly")
+    cbImunizante.place(x=282, y=200)
+
+    btnSalvar = Button(tela, text="Salvar", command=salvar, width=15, border=1, relief="solid")
+    btnSalvar.place(x=190, y=250)
+
+    btnLimpar = Button(tela, text="Voltar", command=voltar, width=15, border=1, relief="solid")
+    btnLimpar.place(x=325, y=250)
+
+    btnSair = Button(tela, text="Sair", command=sair, width=15, border=1, relief="solid")
+    btnSair.place(x=460, y=250)
+
+    tela.mainloop()
+
+
