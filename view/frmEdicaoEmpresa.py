@@ -11,18 +11,6 @@ def voltar():
     from .main import criaTela
     criaTela()
 
-def seleciona():
-    limpar()
-    txtId.config(state="normal")
-    itemSelecionado = tabela.selection()[0]
-    itemFormatado = tabela.item(itemSelecionado,"values")
-    txtId.insert(0,string=itemFormatado[0])
-    txtNome.insert(0,string=itemFormatado[1])
-    txtCnpj.insert(0,string=itemFormatado[2])
-    txtNomeImunizante.insert(0,string=itemFormatado[3])
-    txtId.config(state="readonly")
-    
-
 def menssagem(menssage):
     messagebox.showinfo("Menssagem", menssage)
 
@@ -33,6 +21,29 @@ def limpar():
     txtCnpj.delete(0, END)
     txtNomeImunizante.delete(0, END)
     txtId.config(state="readonly")
+
+def seleciona():
+    limpar()
+    txtId.config(state="normal")
+    itemSelecionado = tabela.selection()[0]
+    itemFormatado = tabela.item(itemSelecionado,"values")
+    txtId.insert(0,string=itemFormatado[0])
+    txtNome.insert(0,string=itemFormatado[1])
+    txtCnpj.insert(0,string=itemFormatado[2])
+    txtNomeImunizante.insert(0,string=itemFormatado[3])
+    txtId.config(state="readonly")
+
+def carregarDados():
+    '''
+    Carrega os dados da empresa em uma variavel de tipo lista, depois para cada componento
+    da lista é adiconado em outra variavel com os dados formatados sem o ToString() do 
+    objeto para ser carrego na tabela de view
+    '''
+    tabela.delete(*tabela.get_children())
+    empresas = listaEmpresas()
+    for empresa in empresas:
+        empresaFormatada = [empresa.id, empresa.nome, empresa.cnpj, empresa.imunizante]
+        tabela.insert("","end",values=empresaFormatada)
 
 def salvar():
 
@@ -56,13 +67,6 @@ def busca():
     tabela.delete(*tabela.get_children())
 
     empresas = buscaEmpresa(txtPesquisa.get())
-    for empresa in empresas:
-        empresaFormatada = [empresa.id, empresa.nome, empresa.cnpj, empresa.imunizante]
-        tabela.insert("","end",values=empresaFormatada)
-
-def carregarDados():
-    tabela.delete(*tabela.get_children())
-    empresas = listaEmpresas()
     for empresa in empresas:
         empresaFormatada = [empresa.id, empresa.nome, empresa.cnpj, empresa.imunizante]
         tabela.insert("","end",values=empresaFormatada)

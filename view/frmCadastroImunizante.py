@@ -6,6 +6,9 @@ from .controller.controllerEstado import *
 from .controller.controllerImunizante import *
 
 def formataEstado():
+    '''
+    Carregas apenas os nomes dos estado para carregar na combobox estado
+    '''
     global estados
     estados = listaEstado()
     estadosFormatados = []
@@ -16,6 +19,9 @@ def formataEstado():
     return estadosFormatados
 
 def formataEmpresa():
+    '''
+    Carregas apenas os nomes das empresas para carregar na combobox empresa
+    '''
     global empresas
     empresas = listaEmpresas()
     empresasFormatadas = []

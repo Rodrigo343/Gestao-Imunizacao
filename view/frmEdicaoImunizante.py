@@ -6,58 +6,6 @@ from .controller.controllerImunizante import *
 from .controller.controllerEmpresa import *
 from .controller.controllerEstado import *
 
-def formataEstado():
-    global estados
-    estados = listaEstado()
-    estadosFormatados = []
-
-    for i in estados:
-        estadosFormatados.append(i.nome)
-    
-    return estadosFormatados
-
-def formataEmpresa():
-    global empresas
-    empresas = listaEmpresas()
-    empresasFormatadas = []
-
-    for i in empresas:
-        empresasFormatadas.append(i.nome)
-    
-    return empresasFormatadas
-
-def formataEstadoSalva(estado):
-    global estados
-    estados = listaEstado()
-
-    for i in estados:
-        if(i.id == estado):
-            nome = i.nome
-    
-    return nome
-
-def formataEmpresaSalva(empresa):
-    global empresas
-    empresas = listaEmpresas()
-
-    for i in empresas:
-        if(i.id == empresa):
-            nome = i.nome
-    
-    return nome
-
-def pegaIdEstado():
-    for i in estados:
-        if(i.nome == cbEstado.get()):
-            estado = i.id
-            return estado
-
-def pegaIdEmpresa():
-    for j in empresas:
-        if(j.nome == cbEmpresa.get()):
-            empresa = j.id
-            return empresa
-
 def sair():
     tela.destroy()
 
@@ -65,22 +13,6 @@ def voltar():
     sair()
     from .main import criaTela
     criaTela()
-
-def seleciona():
-    limpar()
-    txtId.config(state="normal")
-    cbEmpresa.config(state="normal")
-    cbEstado.config(state="normal")
-    itemSelecionado = tabela.selection()[0]
-    itemFormatado = tabela.item(itemSelecionado,"values")
-    txtId.insert(0,string=itemFormatado[0])
-    txtLote.insert(0,string=itemFormatado[1])
-    cbEstado.insert(0,string=itemFormatado[2])
-    cbEmpresa.insert(0,string=itemFormatado[3])
-    cbEmpresa.config(state="readonly")
-    cbEstado.config(state="readonly")
-    txtId.config(state="readonly")
-    
 
 def menssagem(menssage):
     messagebox.showinfo("Menssagem", menssage)
@@ -96,6 +28,104 @@ def limpar():
     cbEmpresa.config(state="readonly")
     cbEstado.config(state="readonly")
     txtId.config(state="readonly")
+
+def formataEstado():
+    '''
+    Carregas apenas os nomes dos estado para carregar na combobox estado
+    '''
+    global estados
+    estados = listaEstado()
+    estadosFormatados = []
+
+    for i in estados:
+        estadosFormatados.append(i.nome)
+    
+    return estadosFormatados
+
+def formataEmpresa():
+    '''
+    Carregas apenas os nomes das empresas para carregar na combobox empresa
+    '''
+    global empresas
+    empresas = listaEmpresas()
+    empresasFormatadas = []
+
+    for i in empresas:
+        empresasFormatadas.append(i.nome)
+    
+    return empresasFormatadas
+
+def formataEstadoSalva(estado):
+    '''
+    Carregas apenas os nomes dos estados para carregar na tabela
+    '''
+    global estados
+    estados = listaEstado()
+
+    for i in estados:
+        if(i.id == estado):
+            nome = i.nome
+    
+    return nome
+
+def formataEmpresaSalva(empresa):
+    '''
+    Carregas apenas os nomes das empresas para carregar na tabela
+    '''
+    global empresas
+    empresas = listaEmpresas()
+
+    for i in empresas:
+        if(i.id == empresa):
+            nome = i.nome
+    
+    return nome
+
+def pegaIdEstado():
+    '''
+    Carrega o nome do estado selecionado na combobox estado, formata para o id que esta na
+    lista estados e retorna o id do estado que esta no banco, para salvar.
+    '''
+    for i in estados:
+        if(i.nome == cbEstado.get()):
+            estado = i.id
+            return estado
+
+def pegaIdEmpresa():
+    '''
+    Carrega o nome da empresa selecionada na combobox estado, formata para o id que esta na
+    lista cidades e retorna o id da empresa que esta no banco, para salvar.
+    '''
+    for j in empresas:
+        if(j.nome == cbEmpresa.get()):
+            empresa = j.id
+            return empresa
+
+def seleciona():
+    '''
+    Seleciona todos os dados da linha da tabela e coloca os respectivos valores nos campos
+    de edição
+    '''
+    limpar()
+    txtId.config(state="normal")
+    cbEmpresa.config(state="normal")
+    cbEstado.config(state="normal")
+    itemSelecionado = tabela.selection()[0]
+    itemFormatado = tabela.item(itemSelecionado,"values")
+    txtId.insert(0,string=itemFormatado[0])
+    txtLote.insert(0,string=itemFormatado[1])
+    cbEstado.insert(0,string=itemFormatado[2])
+    cbEmpresa.insert(0,string=itemFormatado[3])
+    cbEmpresa.config(state="readonly")
+    cbEstado.config(state="readonly")
+    txtId.config(state="readonly")
+
+def carregarDados():
+    tabela.delete(*tabela.get_children())
+    imunizantes = listaImunizantes()
+    for imunizante in imunizantes:
+        imunizanteFormatada = [imunizante.id, imunizante.lote, formataEstadoSalva(imunizante.id_estado), formataEmpresaSalva(imunizante.id_empresa)]
+        tabela.insert("","end",values=imunizanteFormatada)
 
 def salvar():
 
@@ -119,13 +149,6 @@ def busca():
     tabela.delete(*tabela.get_children())
 
     imunizantes = buscaImunizante(txtPesquisa.get())
-    for imunizante in imunizantes:
-        imunizanteFormatada = [imunizante.id, imunizante.lote, formataEstadoSalva(imunizante.id_estado), formataEmpresaSalva(imunizante.id_empresa)]
-        tabela.insert("","end",values=imunizanteFormatada)
-
-def carregarDados():
-    tabela.delete(*tabela.get_children())
-    imunizantes = listaImunizantes()
     for imunizante in imunizantes:
         imunizanteFormatada = [imunizante.id, imunizante.lote, formataEstadoSalva(imunizante.id_estado), formataEmpresaSalva(imunizante.id_empresa)]
         tabela.insert("","end",values=imunizanteFormatada)

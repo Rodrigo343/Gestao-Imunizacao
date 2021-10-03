@@ -5,20 +5,6 @@ from .controller.controllerEmpresa import *
 from .controller.controllerImunizante import *
 from .controller.controllerPessoa import *
 
-def formataImunizante():
-    global imunizantes,empresas
-    imunizantes = listaImunizantes()
-    empresas = listaEmpresas()
-    imunizantesFormatados = []
-    imunizantesFormatados.append("")
-
-    for i in imunizantes:
-        for j in empresas:
-            if i.id_empresa == j.id:
-                imunizantesFormatados.append("Lote: {0} Imunizante: {1}".format(i.lote, j.imunizante))
-    
-    return imunizantesFormatados
-
 def sair():
     tela.destroy()
 
@@ -38,7 +24,28 @@ def limpar():
     cbImunizante.delete(0, END)
     cbImunizante.config(state="readonly")
 
+def formataImunizante():
+    '''
+    Pega as informações de empresas e imunizantes do banco e formata o lote do imunizante
+    e nome da empresa para string para colocar na combobox imunizante
+    '''
+    global imunizantes,empresas
+    imunizantes = listaImunizantes()
+    empresas = listaEmpresas()
+    imunizantesFormatados = []
+    imunizantesFormatados.append("")
+
+    for i in imunizantes:
+        for j in empresas:
+            if i.id_empresa == j.id:
+                imunizantesFormatados.append("Lote: {0} Imunizante: {1}".format(i.lote, j.imunizante))
+    
+    return imunizantesFormatados
+
 def pegaIdImunizante():
+    '''
+    Pega o valor da combobox Imunizante e verifica se está vazio retornando um inteiro
+    '''
     if (cbImunizante.get() != "" ):
         for i in imunizantes:
             comboEmpresaFomatada = cbImunizante.get().split()

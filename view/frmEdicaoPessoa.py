@@ -6,7 +6,32 @@ from .controller.controllerEmpresa import *
 from .controller.controllerImunizante import *
 from .controller.controllerPessoa import *
 
+def sair():
+    tela.destroy()
+
+def voltar():
+    sair()
+    from .main import criaTela
+    criaTela()
+
+def menssagem(menssage):
+    messagebox.showinfo("Menssagem", menssage)
+
+def limpar():
+    txtId.config(state="normal")
+    cbImunizante.config(state="normal")
+    txtId.delete(0, END)
+    txtNome.delete(0, END)
+    txtCpf.delete(0, END)
+    txtDoses.delete(0, END)
+    cbImunizante.delete(0, END)
+    cbImunizante.config(state="readonly")
+    txtId.config(state="readonly")
+
 def formataImunizante():
+    '''
+    Carregas o lote dos imunizante e o nome do imunizante para comboBox
+    '''
     global imunizantes,empresas
     imunizantes = listaImunizantes()
     empresas = listaEmpresas()
@@ -21,6 +46,9 @@ def formataImunizante():
     return imunizantesFormatados
 
 def formataImunizanteSalva(pessoa_imunizante):
+    '''
+    Carregas o lote dos imunizante e o nome do imunizante para tabela
+    '''
     imunizantes = listaImunizantes()
     empresas = listaEmpresas()
     dadosTabela = []
@@ -40,6 +68,10 @@ def formataImunizanteSalva(pessoa_imunizante):
         return dadosTabela
 
 def pegaIdImunizante():
+    '''
+    Carrega a String da combobox estado, formata para uma lista e pega o lote 
+    do imunizante e retorna o id do imunizante que esta no banco, para salvar.
+    '''
     if (cbImunizante.get() != "" ):
         for i in imunizantes:
             comboEmpresaFomatada = cbImunizante.get().split()
@@ -48,15 +80,11 @@ def pegaIdImunizante():
     else:
         return 0
 
-def sair():
-    tela.destroy()
-
-def voltar():
-    sair()
-    from .main import criaTela
-    criaTela()
-
 def seleciona():
+    '''
+    Seleciona todos os dados da linha da tabela e coloca os respectivos valores nos campos
+    de edição
+    '''
     limpar()
     txtId.config(state="normal")
     cbImunizante.config(state="normal")
@@ -69,21 +97,14 @@ def seleciona():
     cbImunizante.insert(0,string="Lote: {0} Imunizante: {1}".format(itemFormatado[4], itemFormatado[5]))
     cbImunizante.config(state="readonly")
     txtId.config(state="readonly")
-    
 
-def menssagem(menssage):
-    messagebox.showinfo("Menssagem", menssage)
-
-def limpar():
-    txtId.config(state="normal")
-    cbImunizante.config(state="normal")
-    txtId.delete(0, END)
-    txtNome.delete(0, END)
-    txtCpf.delete(0, END)
-    txtDoses.delete(0, END)
-    cbImunizante.delete(0, END)
-    cbImunizante.config(state="readonly")
-    txtId.config(state="readonly")
+def carregarDados():
+    tabela.delete(*tabela.get_children())
+    pessoas = listaPessoas()
+    for pessoa in pessoas:
+        dadosImunizante = formataImunizanteSalva(pessoa.id_imunizante)
+        pessoasFormatada = [pessoa.id, pessoa.nome, pessoa.cpf, pessoa.doses,dadosImunizante[0], dadosImunizante[1]]
+        tabela.insert("","end",values=pessoasFormatada)
 
 def salvar():
 
@@ -106,14 +127,6 @@ def excluir():
 def busca():
     tabela.delete(*tabela.get_children())
     pessoas = buscaPessoa(txtPesquisa.get())
-    for pessoa in pessoas:
-        dadosImunizante = formataImunizanteSalva(pessoa.id_imunizante)
-        pessoasFormatada = [pessoa.id, pessoa.nome, pessoa.cpf, pessoa.doses,dadosImunizante[0], dadosImunizante[1]]
-        tabela.insert("","end",values=pessoasFormatada)
-
-def carregarDados():
-    tabela.delete(*tabela.get_children())
-    pessoas = listaPessoas()
     for pessoa in pessoas:
         dadosImunizante = formataImunizanteSalva(pessoa.id_imunizante)
         pessoasFormatada = [pessoa.id, pessoa.nome, pessoa.cpf, pessoa.doses,dadosImunizante[0], dadosImunizante[1]]
