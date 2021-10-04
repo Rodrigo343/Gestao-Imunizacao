@@ -1,4 +1,4 @@
-# Gestao-Imunizacao 
+# Gestão Imunização
 
 Gestão Imunização é um software desktop de gerenciamento do processo de imunização de pessoas.
 Ele foi produzido utilizando python, o paradigma da orientação a objetos, arquitetura MVC, o padrão de projeto DAO e como banco de dados o SQLite.
