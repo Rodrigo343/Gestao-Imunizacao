@@ -16,7 +16,7 @@ class PessoaDAO():
             sql = "SELECT * FROM pessoa"
 
             for row in self.__cur.execute(sql):
-                pessoa = Pessoa(int(row[0]),row[1],int(row[2]),int(row[3]),row[4])
+                pessoa = Pessoa(int(row[0]), row[1], int(row[2]), int(row[3]), row[4])
                 pessoas.append(pessoa)
 
             return pessoas
@@ -42,7 +42,7 @@ class PessoaDAO():
         
             self.__cur = self.__con.cursor()
 
-            self.__cur.execute(sql, ( pessoa.nome, pessoa.cpf, pessoa.doses, pessoa.id_imunizante, pessoa.id))
+            self.__cur.execute(sql, (pessoa.nome, pessoa.cpf, pessoa.doses, pessoa.id_imunizante, pessoa.id))
 
             self.__con.commit()
         except Exception or sqlite3.DatabaseError:
@@ -57,7 +57,7 @@ class PessoaDAO():
             self.__cur = self.__con.cursor()
 
             for row in self.__cur.execute(sql):
-                pessoa = Pessoa(int(row[0]),row[1],int(row[2]),row[3],row[4])
+                pessoa = Pessoa(int(row[0]), row[1], int(row[2]), row[3], row[4])
                 pessoas.append(pessoa)
 
             return pessoas

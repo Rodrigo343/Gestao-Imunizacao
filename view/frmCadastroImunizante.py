@@ -65,7 +65,7 @@ def pegaIdEmpresa():
     
 def salvar():
 
-    if(adicionaImunizante(txtLote.get(),pegaIdEstado(),pegaIdEmpresa())):
+    if(adicionaImunizante(txtLote.get(), pegaIdEstado(), pegaIdEmpresa())):
         limpar()
         menssagem("Cadastrado com sucesso")
     else:
@@ -81,25 +81,25 @@ def criaTela():
     tela.geometry("800x300+300+200")
     tela.resizable(width=False, height=False)
 
-    lblForm =  Label(tela,border=2, relief="solid", width=54, height = 13)
+    lblForm =  Label(tela, border=2, relief="solid", width=54, height = 13)
     lblForm.place(x=190, y=70)
 
-    lblTitulo = Label(tela, text="Cadastro de Imunizante",font="Arial 20")
+    lblTitulo = Label(tela, text="Cadastro de Imunizante", font="Arial 20")
     lblTitulo.place(x=250, y=10)  
 
-    lblLote = Label(tela, text="Lote: ",font="Arial 12")
+    lblLote = Label(tela, text="Lote: ", font="Arial 12")
     lblLote.place(x=200, y=78)
-    txtLote = Entry(tela, width=33, border=1, relief="solid",font="Arial 12")
+    txtLote = Entry(tela, width=33, border=1, relief="solid", font="Arial 12")
     txtLote.place(x=260, y=78)
 
-    lblEstado = Label(tela, text="Estado: ",font="Arial 12")
+    lblEstado = Label(tela, text="Estado: ", font="Arial 12")
     lblEstado.place(x=200, y=120)
-    cbEstado = Combobox(tela, values=formataEstado(), width=31,font="Arial 12",state="readonly")
+    cbEstado = Combobox(tela, values=formataEstado(), width=31, font="Arial 12", state="readonly")
     cbEstado.place(x=260, y=120)
 
-    lblEmpresa = Label(tela, text="Empresa: ",font="Arial 12")
+    lblEmpresa = Label(tela, text="Empresa: ", font="Arial 12")
     lblEmpresa.place(x=200, y=162)
-    cbEmpresa = Combobox(tela, values=formataEmpresa(), width=29,font="Arial 12",state="readonly")
+    cbEmpresa = Combobox(tela, values=formataEmpresa(), width=29, font="Arial 12", state="readonly")
     cbEmpresa.place(x=275, y=162)
 
     btnSalvar = Button(tela, text="Salvar", command=salvar, width=15, border=1, relief="solid")

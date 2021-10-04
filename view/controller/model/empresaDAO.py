@@ -16,7 +16,7 @@ class EmpresaDAO():
             sql = "SELECT * FROM empresa;"
 
             for row in self.__cur.execute(sql):
-                empresa = Empresa(row[0],row[1],int(row[2]),row[3])
+                empresa = Empresa(row[0], row[1], int(row[2]), row[3])
                 empresas.append(empresa)
 
             return empresas
@@ -60,7 +60,7 @@ class EmpresaDAO():
             sql = "SELECT * FROM empresa  WHERE nome LIKE" + concatenar
 
             for row in self.__cur.execute(sql):
-                empresa = Empresa(row[0],row[1],int(row[2]),row[3])
+                empresa = Empresa(row[0], row[1], int(row[2]), row[3])
                 empresas.append(empresa)
 
             return empresas

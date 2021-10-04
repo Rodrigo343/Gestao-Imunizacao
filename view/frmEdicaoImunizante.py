@@ -111,11 +111,11 @@ def seleciona():
     cbEmpresa.config(state="normal")
     cbEstado.config(state="normal")
     itemSelecionado = tabela.selection()[0]
-    itemFormatado = tabela.item(itemSelecionado,"values")
-    txtId.insert(0,string=itemFormatado[0])
-    txtLote.insert(0,string=itemFormatado[1])
-    cbEstado.insert(0,string=itemFormatado[2])
-    cbEmpresa.insert(0,string=itemFormatado[3])
+    itemFormatado = tabela.item(itemSelecionado, "values")
+    txtId.insert(0, string=itemFormatado[0])
+    txtLote.insert(0, string=itemFormatado[1])
+    cbEstado.insert(0, string=itemFormatado[2])
+    cbEmpresa.insert(0, string=itemFormatado[3])
     cbEmpresa.config(state="readonly")
     cbEstado.config(state="readonly")
     txtId.config(state="readonly")
@@ -129,7 +129,7 @@ def carregarDados():
 
 def salvar():
 
-    if(editaImunizante(txtId.get(),txtLote.get(),pegaIdEstado(),pegaIdEmpresa())):
+    if(editaImunizante(txtId.get(), txtLote.get(), pegaIdEstado(), pegaIdEmpresa())):
         limpar()
         menssagem("Cadastrado com sucesso")
         carregarDados()
@@ -155,8 +155,8 @@ def busca():
     
 def criaTela():
 
-    global txtLote,txtId, cbEstado, cbEmpresa, txtPesquisa
-    global lblLote, lblEstado, lblEmpresa, lblId,lblTitulo, lblPesquisa
+    global txtLote, txtId, cbEstado, cbEmpresa, txtPesquisa
+    global lblLote, lblEstado, lblEmpresa, lblId, lblTitulo, lblPesquisa
     global tela, tabela
 
     tela= Tk()
@@ -164,47 +164,47 @@ def criaTela():
     tela.geometry("800x400+300+200")
     tela.resizable(width=False, height=False)
 
-    tabela = ttk.Treeview(tela,columns=('id','lote','cidade','empresa'), show='headings')
-    tabela.column('id',minwidth=0,width=100)
-    tabela.column('lote',minwidth=0,width=100)
-    tabela.column('cidade',minwidth=0,width=100)
-    tabela.column('empresa',minwidth=0,width=150)
-    tabela.heading('id',text='ID')
-    tabela.heading('lote',text='LOTE')
-    tabela.heading('cidade',text='CIDADE')
-    tabela.heading('empresa',text='EMPRESA')
+    tabela = ttk.Treeview(tela,columns=('id', 'lote', 'cidade', 'empresa'), show='headings')
+    tabela.column('id', minwidth=0, width=100)
+    tabela.column('lote', minwidth=0, width=100)
+    tabela.column('cidade', minwidth=0, width=100)
+    tabela.column('empresa', minwidth=0, width=150)
+    tabela.heading('id', text='ID')
+    tabela.heading('lote', text='LOTE')
+    tabela.heading('cidade', text='CIDADE')
+    tabela.heading('empresa', text='EMPRESA')
     tabela.place(x=10, y=130)
     carregarDados()
 
-    lblForm =  Label(tela,border=2, relief="solid", width=45, height = 17)
+    lblForm =  Label(tela, border=2, relief="solid", width=45, height = 17)
     lblForm.place(x=470, y=130)
 
-    lblTitulo = Label(tela, text="Edição de Imunizante",font="Arial 20")
+    lblTitulo = Label(tela, text="Edição de Imunizante", font="Arial 20")
     lblTitulo.place(x=250, y=10)
 
-    lblPesquisa = Label(tela, text="Pesquisa:",font="Arial 12")
+    lblPesquisa = Label(tela, text="Pesquisa:", font="Arial 12")
     lblPesquisa.place(x=10, y=80)
-    txtPesquisa = Entry(tela, width=51, border=1, relief="solid",font="Arial 12")
+    txtPesquisa = Entry(tela, width=51, border=1, relief="solid", font="Arial 12")
     txtPesquisa.place(x=90, y=80)
 
-    lblId = Label(tela, text="Id: ",font="Arial 12")
+    lblId = Label(tela, text="Id: ", font="Arial 12")
     lblId.place(x=480, y=140)
-    txtId = Entry(tela, width=25, border=1, relief="solid",font="Arial 12",state="readonly")
+    txtId = Entry(tela, width=25, border=1, relief="solid", font="Arial 12", state="readonly")
     txtId.place(x=540, y=140)
 
-    lblLote = Label(tela, text="Lote: ",font="Arial 12")
+    lblLote = Label(tela, text="Lote: ", font="Arial 12")
     lblLote.place(x=480, y=180)
-    txtLote = Entry(tela, width=25, border=1, relief="solid",font="Arial 12")
+    txtLote = Entry(tela, width=25, border=1, relief="solid", font="Arial 12")
     txtLote.place(x=540, y=180)
 
-    lblEstado = Label(tela, text="Estado: ",font="Arial 12")
+    lblEstado = Label(tela, text="Estado: ", font="Arial 12")
     lblEstado.place(x=480, y=220)
-    cbEstado = Combobox(tela, values=formataEstado(), width=23,font="Arial 12",state="readonly")
+    cbEstado = Combobox(tela, values=formataEstado(), width=23, font="Arial 12", state="readonly")
     cbEstado.place(x=540, y=220)
 
-    lblEmpresa = Label(tela, text="Empresa: ",font="Arial 12")
+    lblEmpresa = Label(tela, text="Empresa: ", font="Arial 12")
     lblEmpresa.place(x=480, y=260)
-    cbEmpresa = Combobox(tela, values=formataEmpresa(), width=20,font="Arial 12",state="readonly")
+    cbEmpresa = Combobox(tela, values=formataEmpresa(), width=20, font="Arial 12", state="readonly")
     cbEmpresa.place(x=570, y=260)
 
     btnpesquisa = Button(tela, text="Pesquisar", command=busca, width=15, border=1, relief="solid")

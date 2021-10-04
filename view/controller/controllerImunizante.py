@@ -2,7 +2,7 @@ from .model.imunizante import Imunizante
 from .model.imunizanteDAO import ImunizanteDAO
 from .model.pessoaDAO import PessoaDAO
 
-def adicionaImunizante(lote,id_estado,id_empresa):
+def adicionaImunizante(lote, id_estado, id_empresa):
 
     try:
         if lote == "" or  id_estado == "" or id_empresa == "":
@@ -19,7 +19,7 @@ def adicionaImunizante(lote,id_estado,id_empresa):
     except:
         return False
 
-def editaImunizante(id,lote,id_estado,id_empresa):
+def editaImunizante(id, lote, id_estado, id_empresa):
 
     try:
         if lote == "" or  id_estado == "" or id_empresa == "":

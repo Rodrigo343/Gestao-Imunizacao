@@ -16,7 +16,7 @@ class EstadoDAO():
             sql = "SELECT * FROM uf;"
 
             for row in self.__cur.execute(sql):
-                estado = Estado(row[0],row[1])
+                estado = Estado(row[0], row[1])
                 estados.append(estado)
 
             return estados

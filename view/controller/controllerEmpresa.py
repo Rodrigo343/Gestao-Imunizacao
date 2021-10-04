@@ -2,11 +2,11 @@ from .model.empresa import Empresa
 from .model.empresaDAO import EmpresaDAO
 from .model.imunizanteDAO import ImunizanteDAO
 
-def adicionaEmpresa(nome,cnpj,nomeImunizante):
+def adicionaEmpresa(nome, cnpj, nomeImunizante):
 
     try:
-        cnpj = cnpj.replace("-","")
-        cnpj = cnpj.replace(".","")
+        cnpj = cnpj.replace("-", "")
+        cnpj = cnpj.replace(".", "")
 
         if len(cnpj) != 11 or  nome == "" or nomeImunizante == "":
             return False
@@ -21,11 +21,11 @@ def adicionaEmpresa(nome,cnpj,nomeImunizante):
     except:
         return False
 
-def editaEmpresa(id,nome,cnpj,nomeImunizante):
+def editaEmpresa(id, nome, cnpj, nomeImunizante):
     
     try:
-        cnpj = cnpj.replace("-","")
-        cnpj = cnpj.replace(".","")
+        cnpj = cnpj.replace("-", "")
+        cnpj = cnpj.replace(".", "")
 
         if len(cnpj) != 11 or  nome == "" or nomeImunizante == "" or id == "":
             return False

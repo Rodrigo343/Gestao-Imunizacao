@@ -26,11 +26,11 @@ def seleciona():
     limpar()
     txtId.config(state="normal")
     itemSelecionado = tabela.selection()[0]
-    itemFormatado = tabela.item(itemSelecionado,"values")
-    txtId.insert(0,string=itemFormatado[0])
-    txtNome.insert(0,string=itemFormatado[1])
-    txtCnpj.insert(0,string=itemFormatado[2])
-    txtNomeImunizante.insert(0,string=itemFormatado[3])
+    itemFormatado = tabela.item(itemSelecionado, "values")
+    txtId.insert(0, string=itemFormatado[0])
+    txtNome.insert(0, string=itemFormatado[1])
+    txtCnpj.insert(0, string=itemFormatado[2])
+    txtNomeImunizante.insert(0, string=itemFormatado[3])
     txtId.config(state="readonly")
 
 def carregarDados():
@@ -43,11 +43,11 @@ def carregarDados():
     empresas = listaEmpresas()
     for empresa in empresas:
         empresaFormatada = [empresa.id, empresa.nome, empresa.cnpj, empresa.imunizante]
-        tabela.insert("","end",values=empresaFormatada)
+        tabela.insert("", "end", values=empresaFormatada)
 
 def salvar():
 
-    if(editaEmpresa(txtId.get(),txtNome.get(),txtCnpj.get(),txtNomeImunizante.get())):
+    if(editaEmpresa(txtId.get(), txtNome.get(), txtCnpj.get(), txtNomeImunizante.get())):
         limpar()
         menssagem("Cadastrado com sucesso")
         carregarDados()
@@ -69,12 +69,12 @@ def busca():
     empresas = buscaEmpresa(txtPesquisa.get())
     for empresa in empresas:
         empresaFormatada = [empresa.id, empresa.nome, empresa.cnpj, empresa.imunizante]
-        tabela.insert("","end",values=empresaFormatada)
+        tabela.insert("", "end", values=empresaFormatada)
 
 def criaTela():
 
-    global txtNome,txtId, txtCnpj, txtNomeImunizante, txtPesquisa
-    global lblNome, lblCnpj, lblNomeImunizante, lblId,lblTitulo, lblPesquisa
+    global txtNome, txtId, txtCnpj, txtNomeImunizante, txtPesquisa
+    global lblNome, lblCnpj, lblNomeImunizante, lblId, lblTitulo, lblPesquisa
     global tela, tabela
     
     tela= Tk()
@@ -82,47 +82,47 @@ def criaTela():
     tela.geometry("800x400+300+200")
     tela.resizable(width=False, height=False)
 
-    tabela = ttk.Treeview(tela,columns=('id','nome','cnpj','imunizante'), show='headings')
-    tabela.column('id',minwidth=0,width=100)
-    tabela.column('nome',minwidth=0,width=100)
-    tabela.column('cnpj',minwidth=0,width=100)
-    tabela.column('imunizante',minwidth=0,width=150)
-    tabela.heading('id',text='ID')
-    tabela.heading('nome',text='NOME')
-    tabela.heading('cnpj',text='CNPJ')
-    tabela.heading('imunizante',text='IMUNIZANTE')
+    tabela = ttk.Treeview(tela,columns=('id', 'nome', 'cnpj', 'imunizante'), show='headings')
+    tabela.column('id', minwidth=0, width=100)
+    tabela.column('nome', minwidth=0, width=100)
+    tabela.column('cnpj', minwidth=0, width=100)
+    tabela.column('imunizante' ,minwidth=0, width=150)
+    tabela.heading('id', text='ID')
+    tabela.heading('nome', text='NOME')
+    tabela.heading('cnpj', text='CNPJ')
+    tabela.heading('imunizante', text='IMUNIZANTE')
     tabela.place(x=10, y=130)
     carregarDados()
 
-    lblForm =  Label(tela,border=2, relief="solid", width=45, height = 17)
+    lblForm =  Label(tela, border=2, relief="solid", width=45, height = 17)
     lblForm.place(x=470, y=130)
 
-    lblTitulo = Label(tela, text="Cadastro de Empresa",font="Arial 20")
+    lblTitulo = Label(tela, text="Cadastro de Empresa", font="Arial 20")
     lblTitulo.place(x=250, y=10)
 
-    lblPesquisa = Label(tela, text="Pesquisa:",font="Arial 12")
+    lblPesquisa = Label(tela, text="Pesquisa:", font="Arial 12")
     lblPesquisa.place(x=10, y=80)
-    txtPesquisa = Entry(tela, width=64, border=1, relief="solid",font="Arial 12")
+    txtPesquisa = Entry(tela, width=64, border=1, relief="solid", font="Arial 12")
     txtPesquisa.place(x=90, y=80)
 
-    lblId = Label(tela, text="Id: ",font="Arial 12")
+    lblId = Label(tela, text="Id: ", font="Arial 12")
     lblId.place(x=480, y=140)
-    txtId = Entry(tela, width=25, border=1, relief="solid",font="Arial 12",state="readonly")
+    txtId = Entry(tela, width=25, border=1, relief="solid", font="Arial 12", state="readonly")
     txtId.place(x=540, y=140)
 
-    lblNome = Label(tela, text="Nome: ",font="Arial 12")
+    lblNome = Label(tela, text="Nome: ", font="Arial 12")
     lblNome.place(x=480, y=180)
-    txtNome = Entry(tela, width=25, border=1, relief="solid",font="Arial 12")
+    txtNome = Entry(tela, width=25, border=1, relief="solid", font="Arial 12")
     txtNome.place(x=540, y=180)
 
     lblCnpj = Label(tela, text="Cnpj: ",font="Arial 12")
     lblCnpj.place(x=480, y=220)
-    txtCnpj = Entry(tela, width=25, border=1, relief="solid",font="Arial 12")
+    txtCnpj = Entry(tela, width=25, border=1, relief="solid", font="Arial 12")
     txtCnpj.place(x=540, y=220)
 
-    lblNomeImunizante = Label(tela, text="Imunizante: ",font="Arial 12")
+    lblNomeImunizante = Label(tela, text="Imunizante: ", font="Arial 12")
     lblNomeImunizante.place(x=480, y=260)
-    txtNomeImunizante = Entry(tela, width=22, border=1, relief="solid",font="Arial 12")
+    txtNomeImunizante = Entry(tela, width=22, border=1, relief="solid", font="Arial 12")
     txtNomeImunizante.place(x=570, y=260)
 
     btnVoltar = Button(tela, text="Pesquisar", command=busca, width=15, border=1, relief="solid")

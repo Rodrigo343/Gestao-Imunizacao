@@ -16,7 +16,7 @@ class ImunizanteDAO():
             sql = "SELECT * FROM imunizante"
 
             for row in self.__cur.execute(sql):
-                imunizante = Imunizante(row[0],row[1],int(row[2]),int(row[3]))
+                imunizante = Imunizante(row[0], row[1], int(row[2]),  int(row[3]))
                 imunizantes.append(imunizante)
 
             return imunizantes
@@ -61,7 +61,7 @@ class ImunizanteDAO():
             self.__cur = self.__con.cursor()
 
             for row in self.__cur.execute(sql):
-                imunizante = Imunizante(row[0],row[1],int(row[2]),int(row[3]))
+                imunizante = Imunizante(row[0], row[1], int(row[2]), int(row[3]))
                 imunizantes.append(imunizante)
 
             return imunizantes
@@ -90,11 +90,3 @@ class ImunizanteDAO():
 
         except Exception or sqlite3.DatabaseError:
             sqlite3.enable_callback_tracebacks()
-
-
-if __name__ == '__main__':
-    imunizanteDAO = ImunizanteDAO()
-    
-    imu = Imunizante(1, 2200,1,1)
-
-    imunizanteDAO.altera(imu)

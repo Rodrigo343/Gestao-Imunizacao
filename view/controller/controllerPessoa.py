@@ -1,11 +1,12 @@
+from os import pipe
 from .model.pessoa import Pessoa
 from .model.pessoaDAO import PessoaDAO
 
-def adicionaPessoa(nome, cpf,doses, id_imunizante):
+def adicionaPessoa(nome, cpf, doses, id_imunizante):
 
     try:
-        cpf = cpf.replace("-","")
-        cpf = cpf.replace(".","")
+        cpf = cpf.replace("-", "")
+        cpf = cpf.replace(".", "")
         if nome == "" or  len(cpf) !=11 or doses == "":
             return False
         else:
@@ -22,11 +23,11 @@ def adicionaPessoa(nome, cpf,doses, id_imunizante):
     except:
         return False
 
-def editaPessoa(id,nome, cpf,doses, id_imunizante):
+def editaPessoa(id, nome, cpf,doses, id_imunizante):
     
     try:
-        cpf = cpf.replace("-","")
-        cpf = cpf.replace(".","")
+        cpf = cpf.replace("-", "")
+        cpf = cpf.replace(".", "")
         if id =="" or nome == "" or  len(cpf) !=11 or doses == "":
             return False
         else:
