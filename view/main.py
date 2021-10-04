@@ -45,7 +45,7 @@ def criaTela():
 
     tela= Tk()
     tela.title("Cadastro Empresa")
-    tela.geometry("800x300")
+    tela.geometry("800x300+300+200")
     tela.resizable(width=False, height=False)
 
     barraMenu = Menu(tela)

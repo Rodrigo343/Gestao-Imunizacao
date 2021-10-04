@@ -161,7 +161,7 @@ def criaTela():
 
     tela= Tk()
     tela.title("Edição Imunizante")
-    tela.geometry("800x400")
+    tela.geometry("800x400+300+200")
     tela.resizable(width=False, height=False)
 
     tabela = ttk.Treeview(tela,columns=('id','lote','cidade','empresa'), show='headings')

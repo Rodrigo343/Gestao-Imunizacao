@@ -78,7 +78,7 @@ def criaTela():
 
     tela= Tk()
     tela.title("Cadastro Imunizante")
-    tela.geometry("800x300")
+    tela.geometry("800x300+300+200")
     tela.resizable(width=False, height=False)
 
     lblForm =  Label(tela,border=2, relief="solid", width=54, height = 13)

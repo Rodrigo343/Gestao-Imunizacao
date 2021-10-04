@@ -79,7 +79,7 @@ def criaTela():
     
     tela= Tk()
     tela.title("Cadastro Empresa")
-    tela.geometry("800x400")
+    tela.geometry("800x400+300+200")
     tela.resizable(width=False, height=False)
 
     tabela = ttk.Treeview(tela,columns=('id','nome','cnpj','imunizante'), show='headings')
