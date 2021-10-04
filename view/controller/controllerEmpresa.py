@@ -7,8 +7,9 @@ def adicionaEmpresa(nome, cnpj, nomeImunizante):
     try:
         cnpj = cnpj.replace("-", "")
         cnpj = cnpj.replace(".", "")
+        cnpj = cnpj.replace("/", "")
 
-        if len(cnpj) != 11 or  nome == "" or nomeImunizante == "":
+        if len(cnpj) != 14 or  nome == "" or nomeImunizante == "":
             return False
         else:
 
@@ -26,8 +27,9 @@ def editaEmpresa(id, nome, cnpj, nomeImunizante):
     try:
         cnpj = cnpj.replace("-", "")
         cnpj = cnpj.replace(".", "")
+        cnpj = cnpj.replace("/", "")
 
-        if len(cnpj) != 11 or  nome == "" or nomeImunizante == "" or id == "":
+        if len(cnpj) != 14 or  nome == "" or nomeImunizante == "" or id == "":
             return False
         else:
 

@@ -110,7 +110,7 @@ def salvar():
 
     if(editaPessoa(txtId.get(), txtNome.get(), txtCpf.get(), txtDoses.get(), pegaIdImunizante())):
         limpar()
-        menssagem("Cadastrado com sucesso")
+        menssagem("Edição com sucesso")
         carregarDados()
     else:
         menssagem("Cadastro Invalido! Insira corretamente os campos")
@@ -139,7 +139,7 @@ def criaTela():
     global tela, tabela
 
     tela= Tk()
-    tela.title("Edição Imunizante")
+    tela.title("Edição Pessoa")
     tela.geometry("800x400+300+200")
     tela.resizable(width=False, height=False)
 
@@ -162,7 +162,7 @@ def criaTela():
     lblForm =  Label(tela, border=2, relief="solid", width=45, height = 19)
     lblForm.place(x=470, y=98)
 
-    lblTitulo = Label(tela, text="Edição de Imunizante", font="Arial 20")
+    lblTitulo = Label(tela, text="Edição de Pessoa", font="Arial 20")
     lblTitulo.place(x=250, y=10)
 
     lblPesquisa = Label(tela, text="Pesquisa:", font="Arial 12")

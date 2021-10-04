@@ -49,7 +49,7 @@ def salvar():
 
     if(editaEmpresa(txtId.get(), txtNome.get(), txtCnpj.get(), txtNomeImunizante.get())):
         limpar()
-        menssagem("Cadastrado com sucesso")
+        menssagem("Edição com sucesso")
         carregarDados()
     else:
         menssagem("Edição Invalido! Insira corretamente os campos")
@@ -78,7 +78,7 @@ def criaTela():
     global tela, tabela
     
     tela= Tk()
-    tela.title("Cadastro Empresa")
+    tela.title("Edição Empresa")
     tela.geometry("800x400+300+200")
     tela.resizable(width=False, height=False)
 
@@ -97,7 +97,7 @@ def criaTela():
     lblForm =  Label(tela, border=2, relief="solid", width=45, height = 17)
     lblForm.place(x=470, y=130)
 
-    lblTitulo = Label(tela, text="Cadastro de Empresa", font="Arial 20")
+    lblTitulo = Label(tela, text="Edição de Empresa", font="Arial 20")
     lblTitulo.place(x=250, y=10)
 
     lblPesquisa = Label(tela, text="Pesquisa:", font="Arial 12")

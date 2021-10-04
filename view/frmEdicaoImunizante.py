@@ -131,7 +131,7 @@ def salvar():
 
     if(editaImunizante(txtId.get(), txtLote.get(), pegaIdEstado(), pegaIdEmpresa())):
         limpar()
-        menssagem("Cadastrado com sucesso")
+        menssagem("Edição com sucesso")
         carregarDados()
     else:
         menssagem("Edição Invalido! Insira corretamente os campos")
